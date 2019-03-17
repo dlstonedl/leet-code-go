@@ -1,5 +1,7 @@
 package mappractice
 
+import "math"
+
 func commonChars(A []string) []string {
 	var result []string
 
@@ -35,6 +37,33 @@ func commonChars(A []string) []string {
 	for k, v := range cMap1 {
 		for j := 0; j < v; j++ {
 			result = append(result, k)
+		}
+	}
+
+	return result
+}
+
+func commonCharsThoughArray(A []string) []string {
+	cArray := make([]int, 26)
+	for e := range cArray {
+		cArray[e] = math.MaxInt32
+	}
+
+	for _, s := range A {
+		tmpArray := make([]int, 26)
+		for _, c := range s {
+			tmpArray[c-'a']++
+		}
+
+		for e := range cArray {
+			cArray[e] = min(cArray[e], tmpArray[e])
+		}
+	}
+
+	var result []string
+	for k, v := range cArray {
+		for i := 0; i < v; i++ {
+			result = append(result, string('a'+k))
 		}
 	}
 
