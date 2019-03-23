@@ -8,8 +8,8 @@ func fibonacci2(c, quit chan int) {
 		select {
 		case c <- x:
 			x, y = y, x+y
-		case <-quit:
-			fmt.Println("quit")
+		case v := <-quit:
+			fmt.Println(v)
 			return
 		}
 	}
