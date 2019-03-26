@@ -15,10 +15,22 @@ func TestReverseList(t *testing.T) {
 	}
 
 	list := reverseList(head)
-	for list != nil {
-		fmt.Print(list.Val)
-		fmt.Print("->")
-		list = list.Next
+	if list.Val != 5 {
+		fmt.Printf("list.val = %d, want 5", list.Val)
 	}
-	fmt.Print("NULL")
+}
+
+func TestReverseListByRecursion(t *testing.T) {
+	head := &ListNode{1, nil}
+	index := head
+	for i := 2; i <= 5; i++ {
+		next := &ListNode{i, nil}
+		index.Next = next
+		index = next
+	}
+
+	list := reverseListByRecursion(head)
+	if list.Val != 5 {
+		fmt.Printf("list.val = %d, want 5", list.Val)
+	}
 }
