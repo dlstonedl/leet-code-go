@@ -9,9 +9,8 @@ func TestMiddleNode(t *testing.T) {
 	head := &ListNode{1, nil}
 	index := head
 	for i := 2; i <= 5; i++ {
-		next := &ListNode{i, nil}
-		index.Next = next
-		index = next
+		index.Next = &ListNode{i, nil}
+		index = index.Next
 	}
 
 	node := middleNode(head)
