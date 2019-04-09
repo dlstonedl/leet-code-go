@@ -10,6 +10,7 @@ func readMaze(fileName string) [][]int {
 	if err != nil {
 		panic(err)
 	}
+	defer file.Close()
 
 	var row, col int
 	fmt.Fscanf(file, "%d %d", &row, &col)
