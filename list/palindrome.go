@@ -9,14 +9,6 @@ func isPalindrome(head *ListNode) bool {
 		return true
 	}
 
-	if head.Next.Next == nil {
-		if head.Val == head.Next.Val {
-			return true
-		}
-
-		return false
-	}
-
 	fast, low := head, head
 	var values []int
 	values = append(values, low.Val)
