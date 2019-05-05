@@ -38,3 +38,49 @@ func isPalindrome(head *ListNode) bool {
 
 	return true
 }
+
+func isPalindrome2(head *ListNode) bool {
+	if head == nil {
+		return true
+	}
+
+	if head.Next == nil {
+		return true
+	}
+
+	if head.Next.Next == nil &&
+		head.Val == head.Next.Val {
+		return true
+	}
+
+	low, fast := head, head
+	index := low.Next
+
+	for fast.Next != nil && fast.Next.Next != nil {
+		fast = fast.Next.Next
+		low = index
+		index = index.Next
+
+		low.Next = head
+		if head.Next == low {
+			head.Next = nil
+		}
+		head = low
+	}
+
+	if fast.Next == nil {
+		head = head.Next
+	}
+
+	for head != nil {
+
+		if head.Val != index.Val {
+			return false
+		}
+
+		head = head.Next
+		index = index.Next
+	}
+
+	return true
+}
